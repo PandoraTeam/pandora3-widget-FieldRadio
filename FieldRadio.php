@@ -53,6 +53,17 @@ class FieldRadio extends FormField {
 	/**
 	 * {@inheritdoc}
 	 */
+	protected function beforeRender(array $context): array {
+		if ($context['id'] ?? '') {
+			$attribs = $context['attribs'] ?? '';
+			$context['attribs'] = $attribs.' id="'.$context['id'].'"';
+		}
+		return $context;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function getContext(): array {
 		return array_replace( parent::getContext(), [
 			'options' => $this->options
